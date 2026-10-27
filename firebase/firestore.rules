@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{db}/documents {
+    function perfil() { return get(/databases/$(db)/documents/usuarios/$(request.auth.uid)).data; }
+    function ok() { return request.auth != null && exists(/databases/$(db)/documents/usuarios/$(request.auth.uid)) && perfil().estado == 'Activo'; }
+    function rol() { return perfil().rol; }
+    function escribe() { return ok() && rol() in ['Administrador','Supervisor','Operador']; }
+    function gestiona() { return ok() && rol() in ['Administrador','Supervisor']; }
+    match /usuarios/{id} {
+      allow read: if request.auth != null && (request.auth.uid == id || (ok() && rol() == 'Administrador'));
+      allow write: if ok() && rol() == 'Administrador';
+    }
+    match /configuracion/{id} { allow read: if ok(); allow write: if ok() && rol() == 'Administrador'; }
+    match /movimientosFinancieros/{id} { allow read: if gestiona(); allow create: if escribe(); allow update, delete: if false; }
+    match /auditoria/{id} { allow read: if gestiona(); allow create: if escribe(); allow update, delete: if false; }
+    match /movimientosInventario/{id} { allow read: if ok(); allow create: if escribe(); allow update, delete: if false; }
+    match /trabajadores/{id} { allow read: if gestiona(); allow write: if gestiona(); }
+    match /{col}/{id} { allow read: if ok(); allow create, update: if escribe(); allow delete: if false; }
+  }
+}

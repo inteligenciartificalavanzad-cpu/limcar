@@ -1,0 +1,14 @@
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:#f4f6f8;color:#1b2430}
+button,input,select{font:inherit;padding:8px 10px;border:1px solid #c5ccd6;border-radius:6px;background:#fff}button{cursor:pointer}
+.primary{background:#d9480f;color:#fff;border-color:#d9480f}.err{color:#c92a2a}.note{color:#555;font-size:.9rem}
+.layout{display:flex;min-height:100vh}.sidebar{width:220px;background:#1f2937;color:#fff;display:flex;flex-direction:column;padding:12px;position:sticky;top:0;height:100vh}
+.brand{display:flex;flex-direction:column;margin-bottom:12px}.brand small{opacity:.7}.sidebar nav{flex:1;overflow:auto;display:flex;flex-direction:column;gap:2px}
+.sidebar a{color:#d1d5db;text-decoration:none;padding:8px 10px;border-radius:6px}.sidebar a.active{background:#d9480f;color:#fff}.logout{margin-top:8px}
+.main{flex:1;min-width:0}.header{display:flex;align-items:center;gap:12px;background:#fff;padding:10px 16px;border-bottom:1px solid #e1e5ea}.header h2{margin:0;flex:1}.menu-btn{display:none}.who{font-size:.85rem;color:#555}
+.content{padding:16px}.scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:8px 10px;border-bottom:1px solid #eceff3;text-align:left;white-space:nowrap}th{background:#f0f2f5}
+.search{margin:10px 0;width:100%;max-width:320px}.pager{display:flex;gap:10px;align-items:center;margin-top:8px}.act button{padding:4px 8px}
+.center{display:flex;min-height:100vh;align-items:center;justify-content:center;padding:16px}.box{background:#fff;padding:20px;border-radius:10px;display:flex;flex-direction:column;gap:10px;width:100%;max-width:420px;max-height:90vh;overflow:auto}.box.wide{max-width:640px}.login{text-align:center}
+.modal{position:fixed;inset:0;background:#0007;display:flex;align-items:center;justify-content:center;padding:12px;z-index:20}label{display:flex;flex-direction:column;gap:4px;font-size:.9rem}.row{display:flex;gap:8px;justify-content:flex-end;align-items:end;flex-wrap:wrap}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:12px 0}.cards div{background:#fff;padding:14px;border-radius:10px;display:flex;flex-direction:column}.cards b{font-size:1.5rem}
+.line{display:grid;grid-template-columns:60px 1fr 40px 1fr 1fr;gap:6px;align-items:center}
+@media(max-width:800px){.sidebar{position:fixed;left:-240px;z-index:15;transition:.2s}.sidebar.open{left:0}.menu-btn{display:block}}
